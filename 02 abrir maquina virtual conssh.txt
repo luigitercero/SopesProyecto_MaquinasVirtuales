@@ -1,0 +1,13 @@
+en la maquina cliente
+
+1)ssh-keygen 
+2) -escribir el nombre del archivo
+enter 2 veces se crea el archivo en la carpeta actual con extension .pub
+se busca en la maquina virtual que ip publica tiene
+y se coloca como usario en la ultima parte luigitercero3@35.203.14.78 
+
+3)en google cloud dirigir a metadata->claves ssh y por ultimo agregar los datos del archivo qque se genero de .pub pegarlos y guardar el archivo
+
+4) en la maquina cliente ssh -i [archivo.pub] [Usuario]@[ipPublica]
+ssh -i goolge_cloud_1 luigitercero3@35.203.14.78
+
