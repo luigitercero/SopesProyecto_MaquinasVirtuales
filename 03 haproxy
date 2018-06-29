@@ -1,1 +1,44 @@
  
+1) sudo add-apt-repository ppa:vbernat/haproxy-1.8
+
+se da enter hasta finalizar 
+
+2)sudo apt-get update
+
+3) luigitercero3@nosql:~$ haproxy -v
+HA-Proxy version 1.8.12-1ppa1~xenial 2018/06/27
+Copyright 2000-2018 Willy Tarreau <willy@haproxy.org>
+
+4) crear como un back up 
+luigitercero3@nosql:~$ cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.real.cfg
+
+5) vim /etc/haproxy/haproxy.cfg 
+
+frontend http_front
+  bind *:80
+  stats uri /haproxy?stats
+  default_backend http_rear
+
+backend http_rear
+ balance roundrobin
+ server wbs1.com 192.168.5.155:80 check
+ server wbs2.com 192.168.5.147:80 check
+
+ salir ctrl + c :wq
+ 
+ 
+ 
+ 6) sudo systemctl restart haproxy
+
+ 7) http://35.203.14.78/haproxy?stats
+ 
+ 8) si quiero agregarle contrase;a
+ 
+ listen stats
+ bind *:8800
+ stats enable
+ stats uri /
+ stats realm Haproxy\ Statistics
+ stats auth admin:12345
+ 
+ https://www.youtube.com/watch?v=Ay8jOdu3nK8
